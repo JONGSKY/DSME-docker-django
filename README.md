@@ -19,7 +19,7 @@ docker version
 ```
 4. 설치를 완료했다면 dockerhub에서 image 가져와서 실행시키기
 ```
-docker run -d -p 8000:8000 --name system ljhljh0125/system:latest
+docker run -d -p 8000:8000 --name system ljhljh0125/system:dockerhub
 ```
 5. 실행완료 후 http://127.0.0.1:8000/ 잘 실행되는지 확인하기 
 
