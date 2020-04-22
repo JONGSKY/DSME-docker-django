@@ -10,8 +10,16 @@ curl -fsSL https://get.docker.com/ | sudo sh
 ```
 2. docker sudo 없이 사용하기
 ```
+sudo groupadd docker
+```
+```
 sudo usermod -aG docker $USER # 현재 접속중인 사용자에게 권한주기
 sudo usermod -aG docker your-user # your-user 사용자에게 권한주기
+```
+- 권한을 추가했지만 permission denied 발생한다면
+- /var/run/docker.sock 파일의 권한을 666으로 변경하여 다른 사용자도 접근 가능하게 변경
+```
+sudo chmod 666 /var/run/docker.sock
 ```
 3. docker 설치후 버전 확인하기
 ```
