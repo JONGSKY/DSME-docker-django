@@ -1,69 +1,159 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="author" content="colorlib.com">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet"/>
-    <link href="{% static 'search/css/main.css' %}" rel="stylesheet"/>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colrolib Templates">
+    <meta name="author" content="Colrolib">
+    <meta name="keywords" content="Colrolib Templates">
+
+    <!-- Title Page-->
+    <title>선주교신 검색 시스템</title>
+
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'search/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet"
+          media="all">
+    <link href="{% static 'search/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'search/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'search/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'search/css/main.css' %}" rel="stylesheet" media="all">
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script>
+        jQuery(function ($) {
+            $("#result-table").DataTable({
+                // 표시 건수기능 숨기기
+                lengthChange: true,
+                // 검색 기능 숨기기
+                searching: false,
+                // 정렬 기능 숨기기
+                ordering: true,
+                // 정보 표시 숨기기
+                info: true,
+                // 페이징 기능 숨기기
+                paging: true
+            });
+        });
+    </script>
+
 </head>
+
 <body>
 
-<style>
-    .result {
-        position: fixed;
+<div class="page-wrapper bg-img-1 p-t-100 p-b-60">
+    <div class="wrapper wrapper--w900">
+        <div class="title">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'search/images/DSME_logo.png' %}" width="250px" alt="DSME-logo">
+            </a>
+        </div>
+        <div class="card card-4">
+            <div class="card-body">
 
-        left: 35%;
+                <ul class="tab-list">
+                    <li class="tab-list__item active">
+                        <a class="tab-list__link" data-toggle="tab">검색결과</a>
+                    </li>
+                </ul>
 
-        right: 0;
-
-        top: 60%;
-
-        bottom: 0;
-    }
-
-    .home {
-        position: fixed;
-
-        left: 90%;
-
-        right: 0;
-
-        top: 95%;
-
-        bottom: 0;
-    }
-</style>
-
-<div class="s010">
-    <form action="{% url 'result' %}" method="get">
-        <div class="inner-form">
-            <div class="basic-search">
-                <div class="input-field">
-                    <input name="keyword" type="text" placeholder="원하는 검색어를 입력해주세요"/>
-                    <div class="icon-wrap">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                        </svg>
+                <div class="tab-content">
+                    <div class="title">
+                        {% for data in data_list %}
+                        {{ data }}
+                        {% endfor %}
                     </div>
+                    <table id="result-table" class="table table-bordered table-white">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>지역선택</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>서울</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>경기도</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>충청남도</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>충청북도</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>전라남도</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>전라북도</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>경상남도</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>경상북도</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>강원도</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>제주도</td>
+                        </tr>
+                        <tr>
+                            <td>99</td>
+                            <td>해외</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
-    </form>
-
-    <div class="result">
-        {% for data in data_list %}
-        {{ data }}
-        {% endfor %}
-    </div>
-        <div class="home">
-        <a href="{% url 'index' %}">홈으로가기</a>
     </div>
 </div>
 
+<!-- Jquery JS-->
+<script src="{% static 'search/vendor/jquery/jquery.min.js' %}"></script>
+<!-- Vendor JS-->
+<script src="{% static 'search/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static 'search/vendor/jquery-validate/jquery.validate.min.js' %}"></script>
+<script src="{% static 'search/vendor/bootstrap-wizard/bootstrap.min.js' %}"></script>
+<script src="{% static 'search/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js' %}"></script>
+<script src="{% static 'search/vendor/datepicker/moment.min.js' %}"></script>
+<script src="{% static 'search/vendor/datepicker/daterangepicker.js' %}"></script>
 
-</body>
+<!-- Main JS-->
+<script src="{% static 'search/js/global.js' %}"></script>
+
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
+<!-- end document-->

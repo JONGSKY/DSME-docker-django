@@ -1,50 +1,337 @@
 {% load static %}
 
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="kr">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="author" content="colorlib.com">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet"/>
-    <link href="{% static 'search/css/main.css' %}" rel="stylesheet"/>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colrolib Templates">
+    <meta name="author" content="Colrolib">
+    <meta name="keywords" content="Colrolib Templates">
+
+    <!-- Title Page-->
+    <title>선주교신 검색 시스템</title>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'search/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet"
+          media="all">
+    <link href="{% static 'search/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'search/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'search/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'search/css/main.css' %}" rel="stylesheet" media="all">
 </head>
+
 <body>
+<div class="page-wrapper bg-img-1 p-t-100 p-b-60">
+    <div class="wrapper wrapper--w900">
+        <div class="title">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'search/images/DSME_logo.png' %}" width="250px" alt="DSME-logo">
+            </a>
+        </div>
+        <div class="card card-4">
+            <div class="card-body">
 
-<style>
-    .home {
-        position: fixed;
+                <ul class="tab-list">
+                    <li class="tab-list__item active">
+                        <a class="tab-list__link" href="#tab1" data-toggle="tab">검색</a>
+                    </li>
+                    <li class="tab-list__item">
+                        <a class="tab-list__link" href="#tab2" data-toggle="tab">신규파일추가</a>
+                    </li>
+                    <!--                        <li class="tab-list__item">-->
+                    <!--                            <a class="tab-list__link" href="#tab3" data-toggle="tab">flight</a>-->
+                    <!--                        </li>-->
+                </ul>
 
-        left: 90%;
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <form method="get" action="{% url 'result' %}">
 
-        right: 0;
+                            <div class="input-group input-group-big">
+                                <label class="label">검색어:</label>
+                                <input class="input--style-1" type="text" name="keyword" placeholder="검색어를 입력해주세요"
+                                       required="required">
+                                <i class="zmdi zmdi-search input-group-symbol"></i>
+                            </div>
 
-        top: 95%;
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">시작일자:</label>
+                                        <input class="input--style-1" type="text" name="start-date"
+                                               placeholder="mm/dd/yyyy" id="input-start">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">종료일자:</label>
+                                        <input class="input--style-1" type="text" name="end-date"
+                                               placeholder="mm/dd/yyyy" id="input-end">
+                                    </div>
+                                </div>
+                            </div>
 
-        bottom: 0;
-    }
-</style>
+                            <div class="row row-space">
+                                <div class="col-1">
+                                    <div class="input-group">
+                                        <label class="label">호선명:</label>
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="name">
+                                                <option selected="selected">호선1</option>
+                                                <option>호선2</option>
+                                                <option>호선3</option>
+                                                <option>호선4</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-1">
+                                    <div class="input-group">
+                                        <label class="label">호선종류:</label>
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="type">
+                                                <option selected="selected">호선종류1</option>
+                                                <option>호선종류2</option>
+                                                <option>호선종류3</option>
+                                                <option>호선종4</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<div class="s010">
-    <div class="home">
-        <a href="{% url 'index' %}">홈으로가기</a>
-    </div>
-    <form action="{% url 'result' %}" method="get">
-        <div class="inner-form">
-            <div class="basic-search">
-                <div class="input-field">
-                    <input name="keyword" type="text" placeholder="원하는 검색어를 입력해주세요"/>
-                    <div class="icon-wrap">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                        </svg>
+                            <div class="row row-space">
+                                <div class="col-1">
+                                    <div class="input-group">
+                                        <label class="label">Tags:</label>
+                                        <input class="input--style-1" type="text" name="tags"
+                                               placeholder="" id="input-end">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <button class="btn-refresh" onclick="location.href=''">refresh</button>
+
+                                    <!--                                    <div class="input-group">-->
+                                    <!--                                        <label class="label">travellers:</label>-->
+                                    <!--                                        <div class="input-group-icon" id="js-select-special">-->
+                                    <!--                                            <input class="input&#45;&#45;style-1 input&#45;&#45;style-1-small" type="text"-->
+                                    <!--                                                   name="traveller" value="1 Adult, 0 Children, 1 Room"-->
+                                    <!--                                                   disabled="disabled" id="info">-->
+                                    <!--                                            <i class="zmdi zmdi-chevron-down input-icon"></i>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="dropdown-select">-->
+                                    <!--                                            <ul class="list-room">-->
+                                    <!--                                                <li class="list-room__item">-->
+                                    <!--                                                    <span class="list-room__name">Room 1</span>-->
+                                    <!--                                                    <ul class="list-person">-->
+                                    <!--                                                        <li class="list-person__item">-->
+                                    <!--                                                            <span class="name">Adults</span>-->
+                                    <!--                                                            <div class="quantity quantity1">-->
+                                    <!--                                                                <span class="minus">-</span>-->
+                                    <!--                                                                <input class="inputQty" type="number" min="0" value="1">-->
+                                    <!--                                                                <span class="plus">+</span>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </li>-->
+                                    <!--                                                        <li class="list-person__item">-->
+                                    <!--                                                            <span class="name">Children</span>-->
+                                    <!--                                                            <div class="quantity quantity2">-->
+                                    <!--                                                                <span class="minus">-</span>-->
+                                    <!--                                                                <input class="inputQty" type="number" min="0" value="0">-->
+                                    <!--                                                                <span class="plus">+</span>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </li>-->
+                                    <!--                                                    </ul>-->
+                                    <!--                                                </li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                            <div class="list-room__footer">-->
+                                    <!--                                                <a href="#" id="btn-add-room">Add room</a>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn-submit" type="submit">search</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
+
+                    <div class="tab-pane" id="tab2">
+                        <form method="POST" action="#">
+                            <div class="input-group input-group-big">
+                                <label class="label">파일 업로드:</label>
+                                <input class="input--style-1" type="file" name="location"
+                                       placeholder="Destination, hotel name" required="required">
+                                <span class="iconify" data-icon="zmdi:search-in-file" data-inline="false"></span>
+                                <i class="fa fa-paperclip input-group-symbol"></i>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">호선타입:</label>
+                                        <input class="input--style-1" type="text" name="add_type"
+                                               placeholder="" id="add_type">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">수신일자:</label>
+                                        <input class="input--style-1 js-single-datepicker" type="text"
+                                               name="dropoff"
+                                               placeholder="mm/dd/yyyy" data-drop="2">
+                                        <div class="dropdown-datepicker" id="dropdown-datepicker2"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="col-1">
+                                    <div class="input-group">
+                                        <label class="label">호선명:</label>
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="name">
+                                                <option selected="selected">호선1</option>
+                                                <option>호선2</option>
+                                                <option>호선3</option>
+                                                <option>호선4</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="col-1">
+                                    <div class="input-group">
+                                        <label class="label">호선종류:</label>
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="type">
+                                                <option selected="selected">호선종류1</option>
+                                                <option>호선종류2</option>
+                                                <option>호선종류3</option>
+                                                <option>호선종4</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="col-1">
+                                    <div class="input-group">
+                                        <label class="label">Tags:</label>
+                                        <input class="input--style-1" type="text" name="tags"
+                                               placeholder="" id="input-end">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="col-1">
+                                    <div class="input-group">
+                                        <label class="label">교신제목:</label>
+                                        <input class="input--style-1" type="text" name="add_title"
+                                               placeholder="" id="add_title">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button class="btn-submit m-t-0" type="submit">색인요청하기</button>
+                        </form>
+                    </div>
+
+                    <!--                    <div class="tab-pane" id="tab3">-->
+                    <!--                        <form method="POST" action="#">-->
+                    <!--                            <div class="input-group input-group-big">-->
+                    <!--                                <label class="label">origin:</label>-->
+                    <!--                                <input class="input&#45;&#45;style-1" type="text" name="origin" placeholder="City or airport"-->
+                    <!--                                       required="required">-->
+                    <!--                                <i class="zmdi zmdi-search input-group-symbol"></i>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="input-group input-group-big">-->
+                    <!--                                <label class="label">destination:</label>-->
+                    <!--                                <input class="input&#45;&#45;style-1" type="text" name="destination"-->
+                    <!--                                       placeholder="City or airport" required="required">-->
+                    <!--                                <i class="zmdi zmdi-search input-group-symbol"></i>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="row row-space">-->
+                    <!--                                <div class="col-2">-->
+                    <!--                                    <div class="input-group">-->
+                    <!--                                        <label class="label">Departing:</label>-->
+                    <!--                                        <input class="input&#45;&#45;style-1" type="text" name="check-in"-->
+                    <!--                                               placeholder="mm/dd/yyyy" id="input-start-2">-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="col-2">-->
+                    <!--                                    <div class="input-group">-->
+                    <!--                                        <label class="label">returning:</label>-->
+                    <!--                                        <input class="input&#45;&#45;style-1" type="text" name="check-out"-->
+                    <!--                                               placeholder="mm/dd/yyyy" id="input-end-2">-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="radio-row">-->
+                    <!--                                <label class="radio-container m-r-45">First Class-->
+                    <!--                                    <input type="radio" name="class">-->
+                    <!--                                    <span class="radio-checkmark"></span>-->
+                    <!--                                </label>-->
+                    <!--                                <label class="radio-container m-r-45">Business-->
+                    <!--                                    <input type="radio" name="class">-->
+                    <!--                                    <span class="radio-checkmark"></span>-->
+                    <!--                                </label>-->
+                    <!--                                <label class="radio-container">Economy-->
+                    <!--                                    <input type="radio" checked="checked" name="class">-->
+                    <!--                                    <span class="radio-checkmark"></span>-->
+                    <!--                                </label>-->
+                    <!--                            </div>-->
+                    <!--                            <button class="btn-submit m-t-35" type="submit">search</button>-->
+                    <!--                        </form>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
-</body>
+
+<!-- Jquery JS-->
+<script src="{% static 'search/vendor/jquery/jquery.min.js' %}"></script>
+<!-- Vendor JS-->
+<script src="{% static 'search/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static 'search/vendor/jquery-validate/jquery.validate.min.js' %}"></script>
+<script src="{% static 'search/vendor/bootstrap-wizard/bootstrap.min.js' %}"></script>
+<script src="{% static 'search/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js' %}"></script>
+<script src="{% static 'search/vendor/datepicker/moment.min.js' %}"></script>
+<script src="{% static 'search/vendor/datepicker/daterangepicker.js' %}"></script>
+
+<!-- Main JS-->
+<script src="{% static 'search/js/global.js' %}"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
+<!-- end document-->
