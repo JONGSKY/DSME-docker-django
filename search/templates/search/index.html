@@ -57,7 +57,7 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab1">
-                        <form method="get" action="{% url 'result' %}">
+                        <form method="post" action="{% url 'result' %}">
 
                             <div class="input-group input-group-big">
                                 <label class="label">검색어:</label>
@@ -129,45 +129,7 @@
 
                             <div class="row row-space">
                                 <div class="col-2">
-                                    <button class="btn-refresh" onclick="location.href=''">refresh</button>
-
-                                    <!--                                    <div class="input-group">-->
-                                    <!--                                        <label class="label">travellers:</label>-->
-                                    <!--                                        <div class="input-group-icon" id="js-select-special">-->
-                                    <!--                                            <input class="input&#45;&#45;style-1 input&#45;&#45;style-1-small" type="text"-->
-                                    <!--                                                   name="traveller" value="1 Adult, 0 Children, 1 Room"-->
-                                    <!--                                                   disabled="disabled" id="info">-->
-                                    <!--                                            <i class="zmdi zmdi-chevron-down input-icon"></i>-->
-                                    <!--                                        </div>-->
-                                    <!--                                        <div class="dropdown-select">-->
-                                    <!--                                            <ul class="list-room">-->
-                                    <!--                                                <li class="list-room__item">-->
-                                    <!--                                                    <span class="list-room__name">Room 1</span>-->
-                                    <!--                                                    <ul class="list-person">-->
-                                    <!--                                                        <li class="list-person__item">-->
-                                    <!--                                                            <span class="name">Adults</span>-->
-                                    <!--                                                            <div class="quantity quantity1">-->
-                                    <!--                                                                <span class="minus">-</span>-->
-                                    <!--                                                                <input class="inputQty" type="number" min="0" value="1">-->
-                                    <!--                                                                <span class="plus">+</span>-->
-                                    <!--                                                            </div>-->
-                                    <!--                                                        </li>-->
-                                    <!--                                                        <li class="list-person__item">-->
-                                    <!--                                                            <span class="name">Children</span>-->
-                                    <!--                                                            <div class="quantity quantity2">-->
-                                    <!--                                                                <span class="minus">-</span>-->
-                                    <!--                                                                <input class="inputQty" type="number" min="0" value="0">-->
-                                    <!--                                                                <span class="plus">+</span>-->
-                                    <!--                                                            </div>-->
-                                    <!--                                                        </li>-->
-                                    <!--                                                    </ul>-->
-                                    <!--                                                </li>-->
-                                    <!--                                            </ul>-->
-                                    <!--                                            <div class="list-room__footer">-->
-                                    <!--                                                <a href="#" id="btn-add-room">Add room</a>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </div>-->
-                                    <!--                                    </div>-->
+                                    <button class="btn-refresh" type="button" onclick="location.href=''">refresh</button>
                                 </div>
                                 <div class="col-2">
                                     <button class="btn-submit" type="submit">search</button>
@@ -178,10 +140,10 @@
 
 
                     <div class="tab-pane" id="tab2">
-                        <form method="POST" action="#">
+                        <form method="POST" action="">
                             <div class="input-group input-group-big">
                                 <label class="label">파일 업로드:</label>
-                                <input class="input--style-1" type="file" name="location"
+                                <input class="input--style-1" type="file" name="file"
                                        placeholder="Destination, hotel name" required="required">
                                 <span class="iconify" data-icon="zmdi:search-in-file" data-inline="false"></span>
                                 <i class="fa fa-paperclip input-group-symbol"></i>
@@ -265,53 +227,6 @@
                         </form>
                     </div>
 
-                    <!--                    <div class="tab-pane" id="tab3">-->
-                    <!--                        <form method="POST" action="#">-->
-                    <!--                            <div class="input-group input-group-big">-->
-                    <!--                                <label class="label">origin:</label>-->
-                    <!--                                <input class="input&#45;&#45;style-1" type="text" name="origin" placeholder="City or airport"-->
-                    <!--                                       required="required">-->
-                    <!--                                <i class="zmdi zmdi-search input-group-symbol"></i>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="input-group input-group-big">-->
-                    <!--                                <label class="label">destination:</label>-->
-                    <!--                                <input class="input&#45;&#45;style-1" type="text" name="destination"-->
-                    <!--                                       placeholder="City or airport" required="required">-->
-                    <!--                                <i class="zmdi zmdi-search input-group-symbol"></i>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="row row-space">-->
-                    <!--                                <div class="col-2">-->
-                    <!--                                    <div class="input-group">-->
-                    <!--                                        <label class="label">Departing:</label>-->
-                    <!--                                        <input class="input&#45;&#45;style-1" type="text" name="check-in"-->
-                    <!--                                               placeholder="mm/dd/yyyy" id="input-start-2">-->
-                    <!--                                    </div>-->
-                    <!--                                </div>-->
-                    <!--                                <div class="col-2">-->
-                    <!--                                    <div class="input-group">-->
-                    <!--                                        <label class="label">returning:</label>-->
-                    <!--                                        <input class="input&#45;&#45;style-1" type="text" name="check-out"-->
-                    <!--                                               placeholder="mm/dd/yyyy" id="input-end-2">-->
-                    <!--                                    </div>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="radio-row">-->
-                    <!--                                <label class="radio-container m-r-45">First Class-->
-                    <!--                                    <input type="radio" name="class">-->
-                    <!--                                    <span class="radio-checkmark"></span>-->
-                    <!--                                </label>-->
-                    <!--                                <label class="radio-container m-r-45">Business-->
-                    <!--                                    <input type="radio" name="class">-->
-                    <!--                                    <span class="radio-checkmark"></span>-->
-                    <!--                                </label>-->
-                    <!--                                <label class="radio-container">Economy-->
-                    <!--                                    <input type="radio" checked="checked" name="class">-->
-                    <!--                                    <span class="radio-checkmark"></span>-->
-                    <!--                                </label>-->
-                    <!--                            </div>-->
-                    <!--                            <button class="btn-submit m-t-35" type="submit">search</button>-->
-                    <!--                        </form>-->
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -331,7 +246,5 @@
 <!-- Main JS-->
 <script src="{% static 'search/js/global.js' %}"></script>
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
+</body>
 </html>
-<!-- end document-->

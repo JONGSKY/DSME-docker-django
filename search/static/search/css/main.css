@@ -207,8 +207,8 @@ a:active {
    #BACKGROUND
    ========================================================================== */
 .bg-img-1 {
-  background: url("../images/bg-img-01.jpg") center center/cover no-repeat;
-  /*background: #ffffff;*/
+  /*background: url("../images/bg-img-01.jpg") center center/cover no-repeat;*/
+  background: #ffffff;
 }
 
 /* ==========================================================================
@@ -1047,12 +1047,13 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
   font-weight: 500;
   font-size: 22px;
-  color: rgba(128, 128, 128, 0.6);
+  color: #fff;
+  /*color: rgba(128, 128, 128, 0.6);*/
   padding: 0 20px;
 }
 
 .tab-list__link:hover {
-  color: #fff;
+  color: #000000;
 }
 
 @media (max-width: 767px) {
@@ -1062,7 +1063,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .tab-list .active .tab-list__link {
-  color: #fff;
+  color: #000000;
 }
 
 .tab-content > .tab-pane {
@@ -1098,5 +1099,5 @@ input[type=number]::-webkit-outer-spin-button {
    #CARD
    ========================================================================== */
 .card-4 {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(185, 185, 206, 0.52);
 }
